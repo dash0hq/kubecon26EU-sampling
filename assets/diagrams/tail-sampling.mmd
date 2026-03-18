@@ -1,0 +1,4 @@
+flowchart LR
+    A[Applications] -->|OTLP| B["Agent\n(DaemonSet)"]
+    B -->|"loadbalancingexporter\nconsistent hash on trace ID"| C["Gateway\n(Deployment ×2)"]
+    C -->|tailsamplingprocessor| D["Jaeger"]

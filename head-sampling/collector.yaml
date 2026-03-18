@@ -1,0 +1,128 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: otel-collector-config
+  namespace: otel
+data:
+  config.yaml: |
+    receivers:
+      otlp:
+        protocols:
+          grpc:
+            endpoint: 0.0.0.0:4317
+          http:
+            endpoint: 0.0.0.0:4318
+
+    processors:
+      memory_limiter:
+        check_interval: 1s
+        limit_mib: 1638
+        spike_limit_mib: 400
+      probabilistic_sampler:
+        # Sample 10 percent of traces at the head (decision made on trace ID)
+        sampling_percentage: 10
+        hash_seed: 22
+
+    extensions:
+      health_check:
+        endpoint: 0.0.0.0:13133
+
+    exporters:
+      otlp:
+        endpoint: jaeger.otel.svc.cluster.local:4317
+        tls:
+          insecure: true
+      debug:
+        verbosity: basic
+
+    service:
+      extensions: [health_check]
+      pipelines:
+        traces:
+          receivers: [otlp]
+          processors: [memory_limiter, probabilistic_sampler]
+          exporters: [otlp, debug]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: otel-collector
+  namespace: otel
+  labels:
+    app.kubernetes.io/name: otel-collector
+    app.kubernetes.io/component: collector
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: otel-collector
+      app.kubernetes.io/component: collector
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: otel-collector
+        app.kubernetes.io/component: collector
+    spec:
+      containers:
+        - name: collector
+          image: otel/opentelemetry-collector-contrib:0.120.0
+          args:
+            - --config=/etc/otelcol/config.yaml
+          ports:
+            - name: otlp-grpc
+              containerPort: 4317
+              protocol: TCP
+            - name: otlp-http
+              containerPort: 4318
+              protocol: TCP
+            - name: health
+              containerPort: 13133
+              protocol: TCP
+          resources:
+            requests:
+              cpu: 500m
+              memory: 1Gi
+            limits:
+              memory: 2Gi
+          livenessProbe:
+            httpGet:
+              path: /
+              port: health
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /
+              port: health
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          volumeMounts:
+            - name: config
+              mountPath: /etc/otelcol
+      volumes:
+        - name: config
+          configMap:
+            name: otel-collector-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: otel-collector
+  namespace: otel
+  labels:
+    app.kubernetes.io/name: otel-collector
+    app.kubernetes.io/component: collector
+spec:
+  type: ClusterIP
+  ports:
+    - name: otlp-grpc
+      port: 4317
+      targetPort: otlp-grpc
+      protocol: TCP
+    - name: otlp-http
+      port: 4318
+      targetPort: otlp-http
+      protocol: TCP
+  selector:
+    app.kubernetes.io/name: otel-collector
+    app.kubernetes.io/component: collector

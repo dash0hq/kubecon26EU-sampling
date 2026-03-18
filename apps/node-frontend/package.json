@@ -1,0 +1,14 @@
+{
+  "name": "node-frontend",
+  "version": "1.0.0",
+  "description": "HTTP frontend that calls the Go backend and generates traces.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@opentelemetry/api": "^1.9.0",
+    "@opentelemetry/auto-instrumentations-node": "^0.51.0",
+    "express": "^4.21.2"
+  }
+}

@@ -1,0 +1,3 @@
+flowchart LR
+    A[Applications] -->|OTLP| B["Collector\n(Deployment)"]
+    B -->|"probabilistic_sampler\n10 percent, deterministic on trace ID"| C["Jaeger"]
