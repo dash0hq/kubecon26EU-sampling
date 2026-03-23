@@ -37,4 +37,4 @@ Markdown tables need to always be correctly formatted.
 
 ## Diagrams
 
-Use the mermaid syntax to create diagrams, and export a rendered version of each diagrams in @assets/diagrams.
+Use the mermaid syntax to create diagrams, and export a rendered SVG and PNG version of each diagram in @assets/diagrams.

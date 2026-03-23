@@ -1,0 +1,165 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="620" viewBox="0 0 860 620" role="img" aria-label="Tail sampling architecture with RED metrics recording and aggregation">
+  <style>
+    text { font-family: sans-serif; font-size: 13px; fill: #333; }
+    .title { font-weight: bold; font-size: 14px; }
+    .subtitle { font-size: 11px; fill: #666; }
+    .label { font-size: 11px; fill: #555; }
+    .label-blue { font-size: 11px; fill: #4a90c4; }
+    .arrow { stroke: #666; stroke-width: 1.5; fill: none; marker-end: url(#arrowhead); }
+    .arrow-side { stroke: #888; stroke-width: 1.5; fill: none; marker-end: url(#arrowhead); }
+    .arrow-blue { stroke: #7bc0e8; stroke-width: 1.5; fill: none; marker-end: url(#arrowhead-blue); }
+    .mesh { stroke: #c8a000; stroke-width: 1.2; fill: none; marker-end: url(#arrowhead-gold); }
+  </style>
+
+  <defs>
+    <marker id="arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#666"/>
+    </marker>
+    <marker id="arrowhead-gold" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#c8a000"/>
+    </marker>
+    <marker id="arrowhead-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#7bc0e8"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="860" height="620" fill="white"/>
+
+  <!-- ==================== ROW 1: Components ==================== -->
+
+  <!-- Component A -->
+  <rect x="60" y="30" width="150" height="55" rx="4" fill="#e8e0f0" stroke="#999" stroke-width="1.2" stroke-dasharray="5,3"/>
+  <text x="135" y="52" text-anchor="middle" class="title">Component A</text>
+  <text x="135" y="72" text-anchor="middle" class="subtitle">(AlwaysOn sampler)</text>
+
+  <!-- Component B -->
+  <rect x="305" y="30" width="150" height="55" rx="4" fill="#e8e0f0" stroke="#999" stroke-width="1.2" stroke-dasharray="5,3"/>
+  <text x="380" y="52" text-anchor="middle" class="title">Component B</text>
+  <text x="380" y="72" text-anchor="middle" class="subtitle">(AlwaysOn sampler)</text>
+
+  <!-- Component C -->
+  <rect x="550" y="30" width="150" height="55" rx="4" fill="#e8e0f0" stroke="#999" stroke-width="1.2" stroke-dasharray="5,3"/>
+  <text x="625" y="52" text-anchor="middle" class="title">Component C</text>
+  <text x="625" y="72" text-anchor="middle" class="subtitle">(AlwaysOn sampler)</text>
+
+  <!-- ==================== Arrows: Components → Agents ==================== -->
+
+  <line class="arrow" x1="135" y1="85" x2="135" y2="185"/>
+  <text x="142" y="140" class="label">Logs,</text>
+  <text x="142" y="153" class="label">Metrics,</text>
+  <text x="142" y="166" class="label">Spans</text>
+
+  <line class="arrow" x1="380" y1="85" x2="380" y2="185"/>
+  <text x="387" y="140" class="label">Logs,</text>
+  <text x="387" y="153" class="label">Metrics,</text>
+  <text x="387" y="166" class="label">Spans</text>
+
+  <line class="arrow" x1="625" y1="85" x2="625" y2="185"/>
+  <text x="632" y="140" class="label">Logs,</text>
+  <text x="632" y="153" class="label">Metrics,</text>
+  <text x="632" y="166" class="label">Spans</text>
+
+  <!-- ==================== ROW 2: Collector Agents ==================== -->
+
+  <rect x="60" y="190" width="150" height="55" rx="4" fill="#e0e0e0" stroke="#999" stroke-width="1.2" stroke-dasharray="5,3"/>
+  <text x="135" y="213" text-anchor="middle" class="title">Collector Agent</text>
+  <text x="135" y="233" text-anchor="middle" class="label-blue">RED metrics recording</text>
+
+  <rect x="305" y="190" width="150" height="55" rx="4" fill="#e0e0e0" stroke="#999" stroke-width="1.2" stroke-dasharray="5,3"/>
+  <text x="380" y="213" text-anchor="middle" class="title">Collector Agent</text>
+  <text x="380" y="233" text-anchor="middle" class="label-blue">RED metrics recording</text>
+
+  <rect x="550" y="190" width="150" height="55" rx="4" fill="#e0e0e0" stroke="#999" stroke-width="1.2" stroke-dasharray="5,3"/>
+  <text x="625" y="213" text-anchor="middle" class="title">Collector Agent</text>
+  <text x="625" y="233" text-anchor="middle" class="label-blue">RED metrics recording</text>
+
+  <!-- ==================== Mesh: Agents → Sampling Collectors ==================== -->
+
+  <!-- Agent A (x=135) to all 3 sampling collectors -->
+  <line class="mesh" x1="135" y1="245" x2="135" y2="380"/>
+  <line class="mesh" x1="135" y1="245" x2="380" y2="380"/>
+  <line class="mesh" x1="135" y1="245" x2="625" y2="380"/>
+
+  <!-- Agent B (x=380) to all 3 sampling collectors -->
+  <line class="mesh" x1="380" y1="245" x2="135" y2="380"/>
+  <line class="mesh" x1="380" y1="245" x2="380" y2="380"/>
+  <line class="mesh" x1="380" y1="245" x2="625" y2="380"/>
+
+  <!-- Agent C (x=625) to all 3 sampling collectors -->
+  <line class="mesh" x1="625" y1="245" x2="135" y2="380"/>
+  <line class="mesh" x1="625" y1="245" x2="380" y2="380"/>
+  <line class="mesh" x1="625" y1="245" x2="625" y2="380"/>
+
+  <!-- Mesh annotation (removed) -->
+
+  <!-- ==================== Metric connections: Agents → Sampling Collectors (1-to-1) ==================== -->
+
+  <!-- Agent A metrics to all 3 sampling collectors -->
+  <line class="arrow-blue" x1="155" y1="245" x2="155" y2="380"/>
+  <line class="arrow-blue" x1="155" y1="245" x2="400" y2="380"/>
+  <line class="arrow-blue" x1="155" y1="245" x2="645" y2="380"/>
+
+  <!-- Agent B metrics to all 3 sampling collectors -->
+  <line class="arrow-blue" x1="400" y1="245" x2="155" y2="380"/>
+  <line class="arrow-blue" x1="400" y1="245" x2="400" y2="380"/>
+  <line class="arrow-blue" x1="400" y1="245" x2="645" y2="380"/>
+
+  <!-- Agent C metrics to all 3 sampling collectors -->
+  <line class="arrow-blue" x1="645" y1="245" x2="155" y2="380"/>
+  <line class="arrow-blue" x1="645" y1="245" x2="400" y2="380"/>
+  <line class="arrow-blue" x1="645" y1="245" x2="645" y2="380"/>
+
+  <!-- Metric connection label -->
+  <text x="655" y="345" class="label-blue" text-anchor="start">RED metrics</text>
+
+  <!-- ==================== ROW 3: Sampling Collectors ==================== -->
+
+  <rect x="60" y="385" width="150" height="55" rx="4" fill="#fff8e0" stroke="#c8a000" stroke-width="1.5"/>
+  <text x="135" y="408" text-anchor="middle" class="title">Sampling Collector</text>
+  <text x="135" y="428" text-anchor="middle" class="label-blue">Metrics aggregation</text>
+
+  <rect x="305" y="385" width="150" height="55" rx="4" fill="#fff8e0" stroke="#c8a000" stroke-width="1.5"/>
+  <text x="380" y="408" text-anchor="middle" class="title">Sampling Collector</text>
+  <text x="380" y="428" text-anchor="middle" class="label-blue">Metrics aggregation</text>
+
+  <rect x="550" y="385" width="150" height="55" rx="4" fill="#fff8e0" stroke="#c8a000" stroke-width="1.5"/>
+  <text x="625" y="408" text-anchor="middle" class="title">Sampling Collector</text>
+  <text x="625" y="428" text-anchor="middle" class="label-blue">Metrics aggregation</text>
+
+  <!-- ==================== Arrows: Sampling Collectors → Backend ==================== -->
+
+  <!-- Sampled spans (grey) -->
+  <line class="arrow" x1="120" y1="440" x2="340" y2="535"/>
+  <line class="arrow" x1="370" y1="440" x2="370" y2="535"/>
+  <line class="arrow" x1="610" y1="440" x2="410" y2="535"/>
+
+  <!-- Sampled spans label -->
+  <text x="400" y="498" text-anchor="start" class="label">Sampled spans</text>
+
+  <!-- RED metrics (light blue) -->
+  <line class="arrow-blue" x1="150" y1="440" x2="360" y2="535"/>
+  <line class="arrow-blue" x1="390" y1="440" x2="390" y2="535"/>
+  <line class="arrow-blue" x1="640" y1="440" x2="420" y2="535"/>
+
+  <!-- RED metrics label -->
+  <text x="400" y="512" text-anchor="start" class="label-blue">RED metrics</text>
+
+  <!-- ==================== Curved arrows: Agents → Backend (Logs & Metrics) ==================== -->
+
+  <!-- Left agent → Backend (left curve) -->
+  <path class="arrow-side" d="M 60,225 C -10,225 -10,555 340,560" />
+  <!-- Middle agent → Backend (left curve) -->
+  <path class="arrow-side" d="M 305,225 C 25,290 25,530 340,560" />
+  <!-- Right agent → Backend (right curve) -->
+  <path class="arrow-side" d="M 700,225 C 770,225 770,560 420,560" />
+
+  <!-- Logs & Metrics labels -->
+  <text x="15" y="400" class="label" transform="rotate(-90, 15, 400)">Logs &amp; Metrics</text>
+  <text x="745" y="400" class="label" transform="rotate(90, 745, 400)">Logs &amp; Metrics</text>
+
+  <!-- ==================== ROW 4: Backend ==================== -->
+
+  <rect x="310" y="540" width="140" height="45" rx="4" fill="#d4edda" stroke="#5a9a6a" stroke-width="1.5"/>
+  <text x="380" y="568" text-anchor="middle" class="title">Backend</text>
+</svg>

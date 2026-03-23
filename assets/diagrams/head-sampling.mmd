@@ -1,3 +1,8 @@
 flowchart LR
-    A[Applications] -->|OTLP| B["Collector\n(Deployment)"]
-    B -->|"probabilistic_sampler\n10 percent, deterministic on trace ID"| C["Jaeger"]
+    A1["App A"] -->|OTLP| C1
+    A2["App B"] -->|OTLP| C1
+    A3["App C"] -->|OTLP| C2
+    A4["App D"] -->|OTLP| C2
+
+    C1["Collector 1\n(Deployment)"] -->|"probabilistic_sampler\n10%, deterministic\non trace ID"| B["Backend"]
+    C2["Collector 2\n(Deployment)"] -->|"probabilistic_sampler\n10%, deterministic\non trace ID"| B

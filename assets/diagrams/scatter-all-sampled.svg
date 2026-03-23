@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="400" viewBox="0 0 700 400" role="img" aria-label="Scatter chart showing all data points sampled">
+  <style>
+    .axis { stroke: #666; stroke-width: 1.5; }
+    .tick { stroke: #999; stroke-width: 0.5; }
+    .dot-blue { fill: #5ba3d9; }
+    .dot-red { fill: #e03030; }
+  </style>
+
+  <!-- Background -->
+  <rect width="600" height="400" fill="white"/>
+
+  <!-- Axes -->
+  <line class="axis" x1="60" y1="20" x2="60" y2="350"/>
+  <line class="axis" x1="60" y1="350" x2="580" y2="350"/>
+
+  <!-- Y-axis ticks -->
+  <line class="tick" x1="55" y1="350" x2="580" y2="350" stroke-dasharray="4,4"/>
+  <line class="tick" x1="55" y1="284" x2="580" y2="284" stroke-dasharray="4,4"/>
+  <line class="tick" x1="55" y1="218" x2="580" y2="218" stroke-dasharray="4,4"/>
+  <line class="tick" x1="55" y1="152" x2="580" y2="152" stroke-dasharray="4,4"/>
+  <line class="tick" x1="55" y1="86" x2="580" y2="86" stroke-dasharray="4,4"/>
+  <line class="tick" x1="55" y1="20" x2="580" y2="20" stroke-dasharray="4,4"/>
+
+  <!-- Normal (sampled) data points -->
+  <circle class="dot-blue" cx="85" cy="310" r="6"/>
+  <circle class="dot-blue" cx="102" cy="275" r="6"/>
+  <circle class="dot-blue" cx="120" cy="245" r="6"/>
+  <circle class="dot-blue" cx="135" cy="290" r="6"/>
+  <circle class="dot-blue" cx="148" cy="198" r="6"/>
+  <circle class="dot-blue" cx="165" cy="260" r="6"/>
+  <circle class="dot-red" cx="178" cy="175" r="6"/>
+  <circle class="dot-blue" cx="195" cy="230" r="6"/>
+  <circle class="dot-blue" cx="210" cy="142" r="6"/>
+  <circle class="dot-blue" cx="225" cy="305" r="6"/>
+  <circle class="dot-blue" cx="240" cy="188" r="6"/>
+  <circle class="dot-blue" cx="258" cy="265" r="6"/>
+  <circle class="dot-blue" cx="272" cy="118" r="6"/>
+  <circle class="dot-blue" cx="288" cy="210" r="6"/>
+  <circle class="dot-blue" cx="305" cy="155" r="6"/>
+  <circle class="dot-blue" cx="318" cy="280" r="6"/>
+  <circle class="dot-red" cx="332" cy="95" r="6"/>
+  <circle class="dot-blue" cx="348" cy="240" r="6"/>
+  <circle class="dot-blue" cx="365" cy="170" r="6"/>
+  <circle class="dot-blue" cx="378" cy="300" r="6"/>
+  <circle class="dot-red" cx="395" cy="130" r="6"/>
+  <circle class="dot-blue" cx="410" cy="255" r="6"/>
+  <circle class="dot-blue" cx="425" cy="195" r="6"/>
+  <circle class="dot-blue" cx="440" cy="82" r="6"/>
+  <circle class="dot-blue" cx="455" cy="225" r="6"/>
+  <circle class="dot-blue" cx="470" cy="160" r="6"/>
+  <circle class="dot-blue" cx="488" cy="290" r="6"/>
+  <circle class="dot-blue" cx="502" cy="108" r="6"/>
+  <circle class="dot-blue" cx="518" cy="205" r="6"/>
+  <circle class="dot-red" cx="535" cy="270" r="6"/>
+  <circle class="dot-blue" cx="550" cy="145" r="6"/>
+  <circle class="dot-blue" cx="565" cy="320" r="6"/>
+  <circle class="dot-blue" cx="112" cy="330" r="6"/>
+  <circle class="dot-blue" cx="155" cy="105" r="6"/>
+  <circle class="dot-blue" cx="202" cy="315" r="6"/>
+  <circle class="dot-blue" cx="298" cy="75" r="6"/>
+  <circle class="dot-blue" cx="342" cy="335" r="6"/>
+  <circle class="dot-blue" cx="388" cy="55" r="6"/>
+  <circle class="dot-red" cx="448" cy="310" r="6"/>
+  <circle class="dot-blue" cx="525" cy="65" r="6"/>
+
+  <!-- Legend -->
+  <circle class="dot-blue" cx="420" cy="380" r="5"/>
+  <text x="430" y="385" font-family="sans-serif" font-size="12" fill="#666">Sampled</text>
+  <circle class="dot-red" cx="510" cy="380" r="5"/>
+  <text x="520" y="385" font-family="sans-serif" font-size="12" fill="#666">Error (sampled)</text>
+</svg>
